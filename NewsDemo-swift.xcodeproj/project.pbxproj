@@ -18,6 +18,8 @@
 		DA24D2111D40F423009E5E87 /* NewsDemo_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24D2101D40F423009E5E87 /* NewsDemo_swiftTests.swift */; };
 		DA24D21C1D40F423009E5E87 /* NewsDemo_swiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24D21B1D40F423009E5E87 /* NewsDemo_swiftUITests.swift */; };
 		DA24D22B1D417ADE009E5E87 /* 设置环境 in Resources */ = {isa = PBXBuildFile; fileRef = DA24D22A1D417ADE009E5E87 /* 设置环境 */; };
+		DA24D22D1D417F90009E5E87 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24D22C1D417F90009E5E87 /* DemoViewController.swift */; };
+		DA24D22F1D41809C009E5E87 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24D22E1D41809C009E5E87 /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		DA24D21B1D40F423009E5E87 /* NewsDemo_swiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDemo_swiftUITests.swift; sourceTree = "<group>"; };
 		DA24D21D1D40F423009E5E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA24D22A1D417ADE009E5E87 /* 设置环境 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "设置环境"; sourceTree = "<group>"; };
+		DA24D22C1D417F90009E5E87 /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		DA24D22E1D41809C009E5E87 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		E02BC2804F579D03DC83A95D /* Pods-NewsDemo-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo-swift/Pods-NewsDemo-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		E44AB9B90D16912E828AC6DE /* Pods-NewsDemo-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo-swift/Pods-NewsDemo-swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,13 +121,13 @@
 		DA24D1EF1D40F422009E5E87 = {
 			isa = PBXGroup;
 			children = (
-				DA24D2291D417A49009E5E87 /* config */,
 				DA24D1FA1D40F423009E5E87 /* NewsDemo-swift */,
 				DA24D20F1D40F423009E5E87 /* NewsDemo-swiftTests */,
 				DA24D21A1D40F423009E5E87 /* NewsDemo-swiftUITests */,
 				DA24D1F91D40F422009E5E87 /* Products */,
 				010571A480B03A896442F5C2 /* Pods */,
 				554FBB0FC5110088734AF234 /* Frameworks */,
+				DA24D2291D417A49009E5E87 /* config */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +150,8 @@
 				DA24D2021D40F423009E5E87 /* Assets.xcassets */,
 				DA24D2041D40F423009E5E87 /* LaunchScreen.storyboard */,
 				DA24D2071D40F423009E5E87 /* Info.plist */,
+				DA24D22C1D417F90009E5E87 /* DemoViewController.swift */,
+				DA24D22E1D41809C009E5E87 /* TestViewController.swift */,
 			);
 			path = "NewsDemo-swift";
 			sourceTree = "<group>";
@@ -439,7 +445,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA24D22D1D417F90009E5E87 /* DemoViewController.swift in Sources */,
 				DA24D1FE1D40F423009E5E87 /* ViewController.swift in Sources */,
+				DA24D22F1D41809C009E5E87 /* TestViewController.swift in Sources */,
 				DA24D1FC1D40F423009E5E87 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
