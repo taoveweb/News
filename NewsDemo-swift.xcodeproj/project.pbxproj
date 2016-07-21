@@ -17,6 +17,7 @@
 		DA24D2061D40F423009E5E87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA24D2041D40F423009E5E87 /* LaunchScreen.storyboard */; };
 		DA24D2111D40F423009E5E87 /* NewsDemo_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24D2101D40F423009E5E87 /* NewsDemo_swiftTests.swift */; };
 		DA24D21C1D40F423009E5E87 /* NewsDemo_swiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA24D21B1D40F423009E5E87 /* NewsDemo_swiftUITests.swift */; };
+		DA24D22B1D417ADE009E5E87 /* 设置环境 in Resources */ = {isa = PBXBuildFile; fileRef = DA24D22A1D417ADE009E5E87 /* 设置环境 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		DA24D2171D40F423009E5E87 /* NewsDemo-swiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NewsDemo-swiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA24D21B1D40F423009E5E87 /* NewsDemo_swiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDemo_swiftUITests.swift; sourceTree = "<group>"; };
 		DA24D21D1D40F423009E5E87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA24D22A1D417ADE009E5E87 /* 设置环境 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "设置环境"; sourceTree = "<group>"; };
 		E02BC2804F579D03DC83A95D /* Pods-NewsDemo-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo-swift/Pods-NewsDemo-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		E44AB9B90D16912E828AC6DE /* Pods-NewsDemo-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo-swift/Pods-NewsDemo-swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +117,7 @@
 		DA24D1EF1D40F422009E5E87 = {
 			isa = PBXGroup;
 			children = (
+				DA24D2291D417A49009E5E87 /* config */,
 				DA24D1FA1D40F423009E5E87 /* NewsDemo-swift */,
 				DA24D20F1D40F423009E5E87 /* NewsDemo-swiftTests */,
 				DA24D21A1D40F423009E5E87 /* NewsDemo-swiftUITests */,
@@ -163,6 +166,14 @@
 				DA24D21D1D40F423009E5E87 /* Info.plist */,
 			);
 			path = "NewsDemo-swiftUITests";
+			sourceTree = "<group>";
+		};
+		DA24D2291D417A49009E5E87 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				DA24D22A1D417ADE009E5E87 /* 设置环境 */,
+			);
+			path = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 			files = (
 				DA24D2061D40F423009E5E87 /* LaunchScreen.storyboard in Resources */,
 				DA24D2031D40F423009E5E87 /* Assets.xcassets in Resources */,
+				DA24D22B1D417ADE009E5E87 /* 设置环境 in Resources */,
 				DA24D2011D40F423009E5E87 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
