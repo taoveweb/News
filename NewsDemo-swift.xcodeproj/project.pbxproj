@@ -23,6 +23,8 @@
 		E1749D861D41A8A300D78F9A /* SnapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1749D851D41A8A300D78F9A /* SnapTableViewCell.swift */; };
 		E1749D881D41B39500D78F9A /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1749D871D41B39500D78F9A /* ImageTableViewCell.swift */; };
 		E1749D8A1D41B3B700D78F9A /* SmallImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1749D891D41B3B700D78F9A /* SmallImageTableViewCell.swift */; };
+		E1749D8C1D41F43800D78F9A /* ScrollImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1749D8B1D41F43800D78F9A /* ScrollImageView.swift */; };
+		E1749D8E1D4205D700D78F9A /* TitleSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1749D8D1D4205D700D78F9A /* TitleSegment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		E1749D851D41A8A300D78F9A /* SnapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapTableViewCell.swift; sourceTree = "<group>"; };
 		E1749D871D41B39500D78F9A /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		E1749D891D41B3B700D78F9A /* SmallImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallImageTableViewCell.swift; sourceTree = "<group>"; };
+		E1749D8B1D41F43800D78F9A /* ScrollImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollImageView.swift; sourceTree = "<group>"; };
+		E1749D8D1D4205D700D78F9A /* TitleSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSegment.swift; sourceTree = "<group>"; };
 		E44AB9B90D16912E828AC6DE /* Pods-NewsDemo-swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsDemo-swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewsDemo-swift/Pods-NewsDemo-swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,6 +165,8 @@
 				E1749D851D41A8A300D78F9A /* SnapTableViewCell.swift */,
 				E1749D871D41B39500D78F9A /* ImageTableViewCell.swift */,
 				E1749D891D41B3B700D78F9A /* SmallImageTableViewCell.swift */,
+				E1749D8B1D41F43800D78F9A /* ScrollImageView.swift */,
+				E1749D8D1D4205D700D78F9A /* TitleSegment.swift */,
 			);
 			path = "NewsDemo-swift";
 			sourceTree = "<group>";
@@ -454,11 +460,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1749D8E1D4205D700D78F9A /* TitleSegment.swift in Sources */,
 				DA24D22D1D417F90009E5E87 /* DemoViewController.swift in Sources */,
 				E1749D861D41A8A300D78F9A /* SnapTableViewCell.swift in Sources */,
 				DA24D1FE1D40F423009E5E87 /* ViewController.swift in Sources */,
 				E1749D881D41B39500D78F9A /* ImageTableViewCell.swift in Sources */,
 				DA24D22F1D41809C009E5E87 /* TestViewController.swift in Sources */,
+				E1749D8C1D41F43800D78F9A /* ScrollImageView.swift in Sources */,
 				DA24D1FC1D40F423009E5E87 /* AppDelegate.swift in Sources */,
 				E1749D8A1D41B3B700D78F9A /* SmallImageTableViewCell.swift in Sources */,
 			);

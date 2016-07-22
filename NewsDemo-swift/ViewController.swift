@@ -10,12 +10,17 @@ import UIKit
 import Alamofire
 import Kingfisher
 
-class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
+class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource ,TitleSegmentDelegate {
 
     var tableVew = UITableView()
     let CellSnap  = "SnapTableViewCell"
     let CellImage = "ImageTableViewCell"
     var newsArray:NSArray? = []
+    
+    var imageURLArray:Array<String>?
+    var topView :ScrollImageView?
+    var segment:TitleSegment?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,8 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         addSubView()
         setupLayout()
         setupSubview()
+        
+        setupData()
         getDataFromServer()
     }
 
@@ -36,14 +43,17 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     // MARK: - ViewSetup
     
     func addSubView(){
-        
+        self.segment = TitleSegment.init(frame: CGRectMake(0, 20, self.view.bounds.width, 30))
         self.view.addSubview(tableVew)
+        self.view.addSubview(segment!)
+        //self.view.addSubview(topView!)
     }
     
     
     func setupLayout(){
         
-        self.tableVew.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+        self.tableVew.frame = CGRectMake(0, 50, self.view.bounds.width, self.view.bounds.height)
+        self.topView = ScrollImageView.init(frame: CGRectMake(0, 0, self.view.bounds.width, 150))
         
     }
     
@@ -51,6 +61,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         
         self.tableVew.delegate = self
         self.tableVew.dataSource = self
+        self.segment?.delegate = self
         self.tableVew.rowHeight = 100
         self.tableVew.registerClass(SnapTableViewCell.self, forCellReuseIdentifier: CellSnap)
         self.tableVew.registerClass(ImageTableViewCell.self, forCellReuseIdentifier: CellImage)
@@ -87,10 +98,21 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     }
     
     
+    func setupData(){
+        self.segment?.titleArray = ["01","02","03","04", "05","06", "07","03","04", "05","06", "07"]
+    }
+    
+    
     // MASK: - delegate
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.newsArray?.count)!
+        
+        
+        if let count = (self.newsArray?.count) {
+            return count
+        }
+        
+        return 0
     }
     
     
@@ -101,11 +123,15 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         
         
             let cell:SnapTableViewCell = tableVew.dequeueReusableCellWithIdentifier(CellSnap) as! SnapTableViewCell
-            let data:NSDictionary = self.newsArray![indexPath.row] as! NSDictionary
-            let url:String = data["img"] as! String
-            cell.titleLabel.text  = data["title"] as? String
-            cell.detailLabel.text = data["digest"] as? String
-            cell.testImageView.kf_setImageWithURL(NSURL.init(string:url))
+            if let data:NSDictionary = self.newsArray![indexPath.row] as? NSDictionary {
+                cell.titleLabel.text  = data["title"] as? String
+                cell.detailLabel.text = data["digest"] as? String
+                if let url:String = data["img"] as? String{
+                     cell.testImageView.kf_setImageWithURL(NSURL.init(string:url))
+                }
+            }
+            
+            
             return cell
         }
         else{
@@ -131,7 +157,10 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
             return 150.0
         }
     }
-
+    
+    func buttonDidClicked(index: Int) {
+        print(index)
+    }
 
 }
 
