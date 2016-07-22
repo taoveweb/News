@@ -12,24 +12,44 @@ import Kingfisher
 
 class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource ,TitleSegmentDelegate {
 
-    var tableVew = UITableView()
+   
     let CellSnap  = "SnapTableViewCell"
     let CellImage = "ImageTableViewCell"
     var newsArray:NSArray? = []
     
     var imageURLArray:Array<String>?
-    var topView :ScrollImageView?
-    var segment:TitleSegment?
+    lazy var topView :ScrollImageView = {
+        let temp = ScrollImageView.init(frame: CGRectMake(0, 0, self.view.bounds.width, 190))
+        
+        return temp
+    }()
+    lazy var segment:TitleSegment = {
+        
+        let temp =  TitleSegment.init(frame: CGRectMake(0, 20, self.view.bounds.width, 40))
+        temp.titleArray = ["01","02","03","04", "05","06", "07","03","04", "05","06", "07"]
+        temp.delegate = self
+        return temp
+        
+    }()
+    
+    lazy var tableVew: UITableView = {
+        let temp = UITableView.init(frame: CGRectMake(0, 50, self.view.bounds.width, self.view.bounds.height - 40 - 64 ))
+        temp.delegate = self
+        temp.dataSource = self
+     
 
+        return temp
+        
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavagationBar()
         addSubView()
         setupLayout()
         setupSubview()
-        
-        setupData()
+  
         getDataFromServer()
     }
 
@@ -39,32 +59,36 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     }
     
     
+    func setupNavagationBar(){
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 0.86, green: 0.2, blue: 0.22, alpha: 1)
+    }
+    
+    
     
     // MARK: - ViewSetup
     
     func addSubView(){
-        self.segment = TitleSegment.init(frame: CGRectMake(0, 20, self.view.bounds.width, 30))
         self.view.addSubview(tableVew)
-        self.view.addSubview(segment!)
+        self.view.addSubview(segment)
+        
+        self.tableVew.registerClass(SnapTableViewCell.self, forCellReuseIdentifier: CellSnap)
+        self.tableVew.registerClass(ImageTableViewCell.self, forCellReuseIdentifier: CellImage)
         //self.view.addSubview(topView!)
     }
     
     
     func setupLayout(){
         
-        self.tableVew.frame = CGRectMake(0, 50, self.view.bounds.width, self.view.bounds.height)
-        self.topView = ScrollImageView.init(frame: CGRectMake(0, 0, self.view.bounds.width, 150))
+  
+ 
         
     }
     
     func setupSubview(){
+        self.automaticallyAdjustsScrollViewInsets = false
         
-        self.tableVew.delegate = self
-        self.tableVew.dataSource = self
-        self.segment?.delegate = self
-        self.tableVew.rowHeight = 100
-        self.tableVew.registerClass(SnapTableViewCell.self, forCellReuseIdentifier: CellSnap)
-        self.tableVew.registerClass(ImageTableViewCell.self, forCellReuseIdentifier: CellImage)
+        
         
     }
     
@@ -78,9 +102,12 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
             
             
             switch Response.result {
+                
             case .Success:
                 if let dic:NSDictionary = Response.result.value as? NSDictionary {
                     if  let tempArray = dic["T1348647853363"] as? NSArray {
+                        
+                        self.handleBannerData(tempArray)
                         
                         let dataArray = tempArray.subarrayWithRange(NSRange(location: 0, length: (tempArray.count)-1))
                         self.newsArray  = dataArray
@@ -97,11 +124,28 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         
     }
     
+
     
-    func setupData(){
-        self.segment?.titleArray = ["01","02","03","04", "05","06", "07","03","04", "05","06", "07"]
+    
+    func handleBannerData(dataArray:NSArray) {
+        if let urlDic = dataArray[0] as? NSDictionary {
+            
+            if let adArray = urlDic["ads"] as? NSArray {
+                
+                self.topView.imageURLArray = adArray.map({ (adDic) -> String in
+                    
+                    if let url = adDic["imgsrc"] as? String {
+                        print(url)
+                        return url
+                    }
+                    
+                    return ""
+                    
+                })
+                
+            }
+        }
     }
-    
     
     // MASK: - delegate
     
