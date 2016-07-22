@@ -30,6 +30,10 @@ class SnapTableViewCell: UITableViewCell {
         self.contentView.addSubview(detailLabel)
         self.contentView.addSubview(typeLabel)
         
+        detailLabel.numberOfLines = 2;
+        detailLabel.font = UIFont.systemFontOfSize(10)
+        detailLabel.textColor = UIColor.grayColor()
+        
         testImageView.snp_makeConstraints { (make) in
             make.top.bottom.left.equalTo(self.contentView).inset(UIEdgeInsetsMake(15, 15, 15, 0))
             make.width.equalTo(70)
