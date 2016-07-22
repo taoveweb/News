@@ -9,16 +9,47 @@
 import UIKit
 import Alamofire
 
-class ViewController: UIViewController {
+class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
 
+    var tableVew = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         getDataFromServer()
+        
+        addSubView()
+        setupLayout()
+        setupSubview()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
  
+    }
+    
+    
+    
+    // MARK: - ViewSetup
+    
+    func addSubView(){
+        
+        self.view.addSubview(tableVew)
+    }
+    
+    
+    func setupLayout(){
+        
+        self.tableVew.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+        
+    }
+    
+    func setupSubview(){
+        
+        self.tableVew.delegate = self
+        self.tableVew.dataSource = self
+        self.tableVew.rowHeight = 100
+        self.tableVew.registerClass(SnapTableViewCell.self, forCellReuseIdentifier: "SnapTableViewCell")
+        
     }
     
     
@@ -30,6 +61,25 @@ class ViewController: UIViewController {
             print(Response)
         }
         
+    }
+    
+    
+    // MASK: - delegate
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell:SnapTableViewCell = tableVew.dequeueReusableCellWithIdentifier("SnapTableViewCell") as! SnapTableViewCell
+        
+        cell.titleLabel.text  = "titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle"
+        cell.detailLabel.text = "detailllable"
+   
+        
+        return cell
     }
 
 
