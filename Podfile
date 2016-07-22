@@ -12,6 +12,7 @@ pod "AlamofireObjectMapper"
 	
   #AutoLayout 
 pod 'SnapKit', '~> 0.30.0.beta2'  
+pod 'PullToRefresher'
 # Pods for NewsDemo-swift
 
   target 'NewsDemo-swiftTests' do
