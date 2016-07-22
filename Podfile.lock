@@ -5,21 +5,27 @@ PODS:
     - ObjectMapper (~> 1.0)
   - Kingfisher (2.4.2)
   - ObjectMapper (1.3.0)
+  - PullToRefresher (1.3.1)
   - SnapKit (0.30.0.beta2)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
   - Kingfisher
+  - PullToRefresher
   - SnapKit (~> 0.30.0.beta2)
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AlamofireObjectMapper: 70f97cbf45c01c48d26aa07a1a7059a60ed7411d
   Kingfisher: 05bf8d04408aaa70fcd2c8c81b9f1d0f1ad313dd
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
+  PullToRefresher: e17cc032b48148824a77fbf4bce5beb81933071a
   SnapKit: c4bb32b1d3c5d18ff63bf95ffcbc599d2bab964c
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 61a63b1c32e1dec2ce383f9f033a6ef585dadff6
+PODFILE CHECKSUM: 37a12c972304e967d78833b087422f5f766ce4ec
 
 COCOAPODS: 1.0.1

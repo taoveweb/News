@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import Kingfisher
+import PullToRefresh
 
 class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource ,TitleSegmentDelegate {
 
@@ -16,7 +17,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     let CellSnap  = "SnapTableViewCell"
     let CellImage = "ImageTableViewCell"
     var newsArray:NSArray? = []
-    
+    var refresher = PullToRefresh()
     var imageURLArray:Array<String>?
     lazy var topView :ScrollImageView = {
         let temp = ScrollImageView.init(frame: CGRectMake(0, 0, self.view.bounds.width, 190))
@@ -88,19 +89,21 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     func setupSubview(){
         self.automaticallyAdjustsScrollViewInsets = false
         
-        
-        
+        self.tableVew.addPullToRefresh(self.refresher, action: {
+            print("下接刷新")
+            self.getDataFromServer()
+        })
     }
     
     
     // MARK: - private
     
     func getDataFromServer(){
-        
+       
         let url = "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html?from=toutiao&fn=2&prog=LTitleA&passport=&devId=goMk9xEaxb9mEwxNwluKjtp8hhzCyTnWn8pPG0WnJOsN4xIDbc6Cnl0HqWawjLtN&size=20&version=12.0&spever=false&net=wifi&lat=&lon=&ts=1469141330&sign=Dje5naF3Y4yJ%2FXg%2BkCR4g2fNxjW3i9KWzopOm1EePRh48ErR02zJ6%2FKXOnxX046I&encryption=1&canal=appstore"
         Alamofire.request(Method.GET,url ).responseJSON { (Response) in
             
-            
+             self.tableVew.endRefreshing()
             switch Response.result {
                 
             case .Success:
