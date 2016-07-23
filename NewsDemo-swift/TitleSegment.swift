@@ -30,7 +30,7 @@ class TitleSegment: UIView {
     lazy var scrollView:UIScrollView = {
         let temp = UIScrollView();
         temp.showsHorizontalScrollIndicator = false
-        temp.backgroundColor = UIColor.redColor()
+        temp.backgroundColor = UIColor.lightGrayColor()
         
        return temp
     }()
@@ -63,7 +63,7 @@ class TitleSegment: UIView {
                 
                 let button = UIButton()
                 button.frame = CGRectMake(CGFloat(i) * width, 0, width, self.frame.size.height)
-                button.backgroundColor = UIColor.greenColor()
+                button.backgroundColor = UIColor.lightGrayColor()
                 button.addTarget(self, action: #selector(buttonClicked(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 button.tag = i + buttonTagBase
                 self.scrollView.addSubview(button)

@@ -10,35 +10,41 @@ import UIKit
 import Alamofire
 import Kingfisher
 import PullToRefresh
+import SwiftyJSON
 
-class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource ,TitleSegmentDelegate {
+class ViewController: UIViewController  ,TitleSegmentDelegate {
 
    
     let CellSnap  = "SnapTableViewCell"
     let CellImage = "ImageTableViewCell"
-    var newsArray:NSArray? = []
+    //var newsArray:NSArray? = []
     var refresher = PullToRefresh()
     var imageURLArray:Array<String>?
-    lazy var topView :ScrollImageView = {
-        let temp = ScrollImageView.init(frame: CGRectMake(0, 0, self.view.bounds.width, 190))
-        
-        return temp
-    }()
+    
+    var tableviewProtocl:TableviewProtocol?
+    
+    
     lazy var segment:TitleSegment = {
         
-        let temp =  TitleSegment.init(frame: CGRectMake(0, 20, self.view.bounds.width, 40))
-        temp.titleArray = ["01","02","03","04", "05","06", "07","03","04", "05","06", "07"]
+        let temp =  TitleSegment.init(frame: CGRectMake(0, 0, self.view.bounds.width, 40))
+        temp.titleArray = ["首页","婚乐","军事","热点", "体充","北京", "07","03","04", "05","06", "07"]
         temp.delegate = self
         return temp
         
     }()
     
+    lazy var topView :ScrollImageView = {
+        
+        let temp = ScrollImageView.init(frame: CGRectMake(0, 0, self.view.bounds.width, 190))
+        return temp
+        
+    }()
+    
     lazy var tableVew: UITableView = {
+        
         let temp = UITableView.init(frame: CGRectMake(0, 50, self.view.bounds.width, self.view.bounds.height - 40 - 64 ))
-        temp.delegate = self
-        temp.dataSource = self
-     
-
+        //temp.delegate = self
+        //temp.dataSource = self
         return temp
         
     }()
@@ -106,17 +112,37 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
              self.tableVew.endRefreshing()
             switch Response.result {
                 
-            case .Success:
-                if let dic:NSDictionary = Response.result.value as? NSDictionary {
-                    if  let tempArray = dic["T1348647853363"] as? NSArray {
+            case let .Success(data):
+                let json = JSON(data)
+                
+                if let adArray:Array<JSON> = json["T1348647853363"][0]["ads"].array{
+                    
+                    self.topView.imageURLArray = adArray.map({ (adDic) -> String in
                         
-                        self.handleBannerData(tempArray)
+                        if let url = adDic["imgsrc"].string {
+                           // print(url)
+                            return url
+                        }
                         
-                        let dataArray = tempArray.subarrayWithRange(NSRange(location: 0, length: (tempArray.count)-1))
-                        self.newsArray  = dataArray
-                        self.tableVew.reloadData()
-                    }
+                        return ""
+                        
+                    })
+
+                    
                 }
+                
+                if let tempArray:NSArray = json["T1348647853363"].arrayObject{
+                    
+                    
+                        let newsArray = tempArray.subarrayWithRange(NSRange(location: 1, length: (tempArray.count)-1))
+                        self.setupTableViewData(newsArray)
+                        self.tableVew.tableHeaderView = self.topView
+                        self.tableVew.reloadData()
+                        
+
+                    
+                }
+
             case .Failure:
                 print(Response.result.error)
             }
@@ -128,6 +154,13 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     }
     
 
+    func setupTableViewData(array:NSArray?){
+        self.tableviewProtocl = TableviewProtocol()
+        self.tableviewProtocl?.newsArray =  array
+        
+        self.tableVew.delegate = self.tableviewProtocl
+        self.tableVew.dataSource = self.tableviewProtocl
+    }
     
     
     func handleBannerData(dataArray:NSArray) {
@@ -152,58 +185,10 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     
     // MASK: - delegate
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        if let count = (self.newsArray?.count) {
-            return count
-        }
-        
-        return 0
-    }
+   
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if indexPath.row % 2 == 0 {
-            
-        
-        
-            let cell:SnapTableViewCell = tableVew.dequeueReusableCellWithIdentifier(CellSnap) as! SnapTableViewCell
-            if let data:NSDictionary = self.newsArray![indexPath.row] as? NSDictionary {
-                cell.titleLabel.text  = data["title"] as? String
-                cell.detailLabel.text = data["digest"] as? String
-                if let url:String = data["img"] as? String{
-                     cell.testImageView.kf_setImageWithURL(NSURL.init(string:url))
-                }
-            }
-            
-            
-            return cell
-        }
-        else{
-            
-            let cell:ImageTableViewCell = tableVew.dequeueReusableCellWithIdentifier(CellImage) as! ImageTableViewCell
-            let data:NSDictionary = self.newsArray![indexPath.row] as! NSDictionary
-            let url:String = data["img"] as! String
-
-            cell.titleLable.text  = data["title"] as? String
-            cell.bigImageView.kf_setImageWithURL(NSURL.init(string:url))
-            return cell
-            
-        }
-        
-        
-    }
-    
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row % 2 == 0 {
-            return 100.0
-        }else{
-            return 150.0
-        }
-    }
+   
     
     func buttonDidClicked(index: Int) {
         print(index)

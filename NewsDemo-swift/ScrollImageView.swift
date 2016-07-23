@@ -17,7 +17,8 @@ class ScrollImageView: UIView , UIScrollViewDelegate {
             creatImageViews()
         }
     }
-    let scrollView = UIScrollView()
+
+    var scrollView = UIScrollView()
     
     var timer :NSTimer?
     
@@ -26,7 +27,9 @@ class ScrollImageView: UIView , UIScrollViewDelegate {
         scrollView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
         scrollView.pagingEnabled = true
         scrollView.delegate = self
+        self.backgroundColor = UIColor.lightGrayColor()
         self.addSubview(scrollView)
+        scrollView.backgroundColor = UIColor.blueColor()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +52,7 @@ class ScrollImageView: UIView , UIScrollViewDelegate {
                 scrollView.addSubview(imageView)
                 
                 if let url = imageURLArray?[index] {
-                    
+                    print(url)
                     imageView.kf_setImageWithURL(NSURL.init(string: url)!)
                 }
             }
